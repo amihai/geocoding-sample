@@ -1,0 +1,54 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+
+    <id>${project.version}</id>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <formats>
+        <format>zip</format>
+    </formats>
+
+    <fileSets>
+        <fileSet>
+            <directory>src/main/resources/</directory>
+            <outputDirectory>.</outputDirectory>
+			<includes> 
+				<include>log4j.properties</include> 
+				<include>geocoding.properties</include> 
+				<include>start.cmd</include>
+			</includes>
+        </fileSet>
+    </fileSets>
+
+	<dependencySets>
+        <dependencySet>
+            <outputDirectory>.</outputDirectory>
+            <outputFileNameMapping>${artifact.artifactId}-${artifact.baseVersion}.${artifact.extension}</outputFileNameMapping>
+            <includes>
+                <include>${project.groupId}:${project.artifactId}:jar</include>
+                <include>org.apache.camel:camel-core:jar</include>
+                <include>org.apache.camel:camel-spring:jar</include>
+                <include>org.apache.camel:camel-http:jar</include>
+                <include>org.apache.camel:camel-cache:jar</include>
+                <include>org.apache.poi:poi:jar</include>
+                <include>org.apache.poi:poi-ooxml:jar</include>
+                <include>org.apache.camel:camel-jackson:jar</include>
+                <include>commons-io:commons-io:jar</include>
+                <include>commons-logging:commons-logging:jar</include>
+                <include>commons-httpclient:commons-httpclient:jar</include>
+                <include>commons-codec:commons-codec:jar</include>
+                <include>com.google.code.gson:gson:jar</include>
+                <include>org.slf4j:slf4j-api:jar</include>
+                <include>org.slf4j:slf4j-log4j12:jar</include>
+                <include>log4j:log4j:jar</include>
+                <include>org.springframework:spring-context:jar</include>
+                <include>org.springframework:spring-core:jar</include>
+                <include>org.springframework:spring-expression:jar</include>
+                <include>org.springframework:spring-aop:jar</include>
+                <include>org.springframework:spring-beans:jar</include>
+                <include>net.sf.ehcache:ehcache:jar</include>
+            </includes>
+        </dependencySet>     
+    </dependencySets>
+
+    
+</assembly>

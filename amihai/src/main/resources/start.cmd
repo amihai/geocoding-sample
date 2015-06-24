@@ -1,0 +1,1 @@
+java -Dlog4j.configuration=file:log4j.properties -cp * ro.amihai.geocoding.main.GeocodingApp 

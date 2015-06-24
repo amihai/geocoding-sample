@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+  
+  <bean id="properties" class="org.apache.camel.component.properties.PropertiesComponent">
+    <property name="location" value="classpath:geocoding.properties"/>
+  </bean>
+  
+  <bean id="inputSplitter" class="ro.amihai.geocoding.processor.XLSSplitter" autowire="byType"/>
+  <bean id="createXLS" class="ro.amihai.geocoding.processor.CreateXLS" autowire="byType"/>
+  <bean id="writeXLS" class="ro.amihai.geocoding.processor.WriteXLS" autowire="byType"/>
+  <bean id="outputAggregator" class="ro.amihai.geocoding.aggregator.OutputAggregator" autowire="byType"/>
+  <bean id="geocodingErrorHandler" class="ro.amihai.geocoding.processor.GeocodingErrorHandler" autowire="byType"/>
+  
+  
+  
+  <bean id="geocodingRouteBuilder" class="ro.amihai.geocoding.routes.GeocodingRouteBuilder" autowire="byType"/>
+  
+  <!-- Define the camel context with the route builder -->
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <routeBuilder ref="geocodingRouteBuilder" /> 
+  </camelContext>
+
+
+</beans>
